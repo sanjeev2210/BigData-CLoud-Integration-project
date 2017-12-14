@@ -1,0 +1,33 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta http-equiv="refresh" content="5;url=http://www.thor.com/cgi-bin/portal.py" />
+<title>Redirecting...</title>
+<script>
+function blinking_header()
+{
+if (document.getElementById('blink').src="http://www.thor.com/images/first.png")
+	{
+	document.getElementById('blink').src="http://www.thor.com/images/second.png";
+	}
+else
+	{
+	document.getElementById('blink').src="http://www.thor.com/images/first.png";
+	}
+timer=setTimeout("blinking_header()",100);
+}
+
+function stoptimer()
+{
+clearTimeout(timer);
+}
+
+</script>
+</head>
+<body onload="blinking_header()" onunload="stoptimer()">
+<center>
+<img src="http://www.thor.com/images/first.png" id="blink" width=600 height=600/>
+<h1>Redirecting in 5 seconds...</h1>
+</center>
+</body>
+</html>

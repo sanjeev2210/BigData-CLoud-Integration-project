@@ -1,0 +1,27 @@
+---
+- hosts: client
+  tasks:
+    - blockinfile:
+        path: '/etc/hadoop/mapred-site.xml'
+        marker: '<!-- client node config -->'
+        line: |
+              <?xml version="1.0"?>
+              <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+              <configuration>
+              <property>
+              <name>mapred.job.tracker</name>
+              <value>{{job}}:9001</value>
+              </property>
+              </configuration>
+    - blockinfile:
+        path: '/etc/hadoop/core-site.xml'
+        marker: '<!-- client node config -->'
+        block: |
+               <?xml version="1.0"?>
+               <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+               <configuration>
+               <property>
+               <name>fs.default.name</name>
+               <value>hdfs://{{master}}:10001</value>
+               </property>
+               </configuration>

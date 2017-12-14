@@ -1,0 +1,77 @@
+<!DOCTYPE>
+<html>
+<head>
+<style>
+div.logport{
+	width:40%;
+	text-align:center;
+	position:relative;
+	height:200px;
+	margin-bottom:70px;
+	border-radius:4px;
+}
+td.key{
+	font-size:20px;
+	line-height:8px;
+	color:black;
+	font-family:Georgia;
+	padding:10px;
+}
+input.in{
+	padding:10px;
+	font-size:20px;
+	border:2px ridge aqua;
+	background:lightgrey;
+	border-radius:3px;
+}
+input.in:focus{
+	box-shadow:0px 0px 5px black;
+}
+input.n {
+    display: block;
+    color: white;
+    text-align: center;
+    font-size:20px;
+    padding: 16px;
+    text-decoration: none;
+    width: 200px;
+    overflow: hidden;
+    background-color: blue;
+}
+
+input.n:hover {
+    background-color: black;
+}
+</style>
+</head>
+<body>
+<form method="POST" action="http://www.thor.com/cgi-bin/instance.py">
+<table>
+<tr>
+<td class="key">IP of DataNode:</td>
+<td><input class="in" placeholder="enter ip address" name="data" size="15" type="text"></td>
+</tr>
+<tr>
+<td class="key">IP of NameNode:</td>
+<td><input class="in" placeholder="enter ip address" type="text" size="15" name="master"></td>
+</tr>
+<tr>
+<td class="key">IP of Job Tracker:</td>
+<td><input class="in" placeholder="enter ip address" type="text" size="15" name="job"></td>
+</tr>
+<tr>
+<td class="key">IP of Client:</td>
+<td><input class="in" placeholder="enter ip address" type="text" size="15" name="client"></td>
+</tr>
+<tr>
+<td colspan="2"><center>
+<input class="n" type="submit" value="Create Cluster"/></center>
+</td>
+<td></td>
+</tr>
+</table>
+</form>
+</body>
+</html>
+
+

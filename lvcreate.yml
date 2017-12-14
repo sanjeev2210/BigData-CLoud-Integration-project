@@ -1,0 +1,22 @@
+---
+- hosts: base
+  tasks:
+    - lvol:
+        vg: 'cloud'
+        lv: 'rahul-d2'
+        size: 3g
+    - command: 'mkfs.ext4 /dev/cloud/rahul-d2'
+    - file:
+        state: directory
+        path: '/media/rahul-2'
+        mode: 'u+rwx,g=rx,o+rwx'
+    - name: Mount up device by path
+      mount:
+        path: '/media/rahul-d2'
+        src: '/dev/cloud/rahul-d2'
+        fstype: ext4
+        state: mounted
+    - lineinfile:
+        path: '/etc/exports'
+        line: '/media/rahul-d2 *(rw,sync,no_root_squash)'
+    - command: 'exportfs -v'

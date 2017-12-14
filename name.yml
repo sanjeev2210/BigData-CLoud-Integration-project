@@ -1,0 +1,32 @@
+---
+- hosts: master
+  tasks:
+    - file:
+        state: directory
+        path: '/name'
+    - blockinfile:
+        path: '/etc/hadoop/hdfs-site.xml'
+        marker: '<!-- name node config -->'
+        block: |
+              <?xml version="1.0"?>
+              <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+              <configuration>
+              <property>
+              <name>dfs.name.dir</name>
+              <value>/name</value>
+              </property>
+              </configuration>
+    - blockinfile:
+        path: '/etc/hadoop/core-site.xml'
+        marker: '<!-- name node config -->'
+        insertafter: EOF
+        block: |
+               <configuration>
+               <property>
+               <name>fs.default.name</name>
+               <value>hdfs://{{master}}:10001</value>
+               </property>
+               </configuration>
+    - command: 'echo Y | hadoop namenode -format --stdin'
+    - command: 'hadoop-daemon.sh start namenode'
+
